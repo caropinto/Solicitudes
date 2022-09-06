@@ -16,4 +16,14 @@ class Movimiento extends Model
         'cuenta_id',
         'categoria_id',
     ];
+
+    public function cuenta()
+    {
+        return $this->belongsTo(Cuenta::class, 'cuenta_id', 'id');
+    }
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id', 'id');
+    }
 }
