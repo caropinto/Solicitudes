@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Cuenta extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'saldo',
+        'user_id',
+        'nombre',
+    ];
 }

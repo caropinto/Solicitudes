@@ -15,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('movimientos', function (Blueprint $table) {
             $table->id();
+            $table->integer('valor')->default(0);
+            $table->smallInteger('tipo')->default(0);
+            $table->string('descripcion');
+            $table->unsignedBigInteger('cuenta_id');
+            $table->unsignedBigInteger('categoria_id');
             $table->timestamps();
+            $table->foreign('cuenta_id')->references('id')->on('cuentas');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
         });
     }
 
