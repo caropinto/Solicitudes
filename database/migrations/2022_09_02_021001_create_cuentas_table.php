@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('saldo')->default(0);
             $table->unsignedBigInteger('user_id');
             $table->string('nombre');
+            $table->boolean('activo')->default(true);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });

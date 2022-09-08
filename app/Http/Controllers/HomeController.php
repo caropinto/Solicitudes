@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $mensaje = 'hola';
+        $mensaje = 'Hola';
         $usuario = Auth::user();
         return view('home', ['mensaje' => $mensaje, 'usuario' => $usuario]);
     }
