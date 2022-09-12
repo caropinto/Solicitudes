@@ -23,10 +23,12 @@
         @forelse ($usuario->cuentas as $cuenta)
             <div class="col col-sm-12 col-md-4 col-lg-3">
                 <div class="card mt-3">
-                    <div class="card-body">
-                        <h5 class="card-title">$ {{ $cuenta->saldo }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $cuenta->nombre }}</h6>
-                    </div>
+                    <a href="{{ route('cuenta', ['id' => $cuenta->id]) }}">
+                        <div class="card-body">
+                            <h5 class="card-title">$ {{ $cuenta->saldo }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $cuenta->nombre }}</h6>
+                        </div>
+                    </a>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill {{ $cuenta->activo ? 'bg-success' : 'bg-danger' }}">
                         {{ $cuenta->activo ? 'Activo' : 'Inactivo' }}
                         <span class="visually-hidden">unread messages</span>

@@ -26,6 +26,6 @@ class HomeController extends Controller
     {
         $mensaje = 'Hola';
         $usuario = Auth::user();
-        return view('home', ['mensaje' => $mensaje, 'usuario' => $usuario]);
+        return view('home', compact('mensaje', 'usuario'));
     }
 }
