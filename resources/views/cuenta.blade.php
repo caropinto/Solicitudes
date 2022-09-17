@@ -22,5 +22,35 @@
             </div>
         </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Categoría</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($cuenta->movimientos as $movimiento)
+                            <tr>
+                                <td>{{ date('d/m/Y', strtotime($movimiento->created_at)) }}</td>
+                                <th><span class="{{ $movimiento->tipo ? 'text-success' : '' }}">{{ ($movimiento->tipo ? '+' : '-') . ' $' . number_format($movimiento->valor, 0, ',', '.') }}</span></th>
+                                <td>{{ $movimiento->descripcion }}</td>
+                                <td>{{ $movimiento->categoria->nombre }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td class="text-center" colspan="4">No hay movimientos</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
