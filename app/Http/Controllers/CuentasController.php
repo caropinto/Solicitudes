@@ -7,9 +7,13 @@ use App\Models\Cuenta;
 
 class CuentasController extends Controller
 {
-    public function index($id){
+    public function view($id){
         $cuenta = Cuenta::find($id);
-        //dd($cuenta);
         return view('cuenta', compact('cuenta'));
+    }
+
+    public function newMovement($id){
+        $cuenta = Cuenta::find($id);
+        return view('movimiento', compact('cuenta'));
     }
 }

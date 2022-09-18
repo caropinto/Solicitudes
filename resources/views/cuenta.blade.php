@@ -24,6 +24,11 @@
     </div>
     <div class="row mt-4">
         <div class="col-12">
+            <a class="btn btn-primary" href="{{ route('nuevoMovimiento', ['id' => $cuenta->id]) }}" role="button">Nuevo Movimiento</a>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
             <div class="card">
                 <table class="table mb-0">
                     <thead>

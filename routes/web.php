@@ -22,4 +22,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/home/{id}', [CuentasController::class, 'index'])->name('cuenta');
+Route::get('/home/{id}', [CuentasController::class, 'view'])->name('cuenta');
+Route::get('/home/{id}/movimiento', [CuentasController::class, 'newMovement'])->name('nuevoMovimiento');
