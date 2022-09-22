@@ -22,6 +22,6 @@ class Cuenta extends Model
 
     public function movimientos()
     {
-        return $this->hasMany(Movimiento::class, 'cuenta_id', 'id');
+        return $this->hasMany(Movimiento::class, 'cuenta_id', 'id')->orderBy('created_at', 'desc');
     }
 }

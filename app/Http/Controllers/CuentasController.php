@@ -9,6 +9,11 @@ use App\Models\Movimiento;
 
 class CuentasController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function view($id){
         $cuenta = Cuenta::find($id);
         return view('cuenta', compact('cuenta'));
@@ -27,6 +32,14 @@ class CuentasController extends Controller
         $movimiento->valor = $request->valor;
         $movimiento->categoria_id = $request->categoria_id;
         $movimiento->descripcion = $request->descripcion;
-        dd($cuenta, $movimiento, $request);
+        $movimiento->cuenta_id = $cuenta->id;
+        $movimiento->created_at = date('Y-m-d H:i:s');
+        $movimiento->save();
+
+        $valorMovimiento = $movimiento->tipo ? $movimiento->valor : ($movimiento->valor * -1);
+        $cuenta->saldo = $cuenta->saldo + $valorMovimiento;
+        $cuenta->save();
+        
+        return redirect()->route('cuenta', ['id' => $cuenta->id]);
     }
 }
