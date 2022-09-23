@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Cuenta;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Categoria;
+use App\Models\Cuenta;
 use App\Models\Movimiento;
 
 class CuentasController extends Controller
@@ -14,15 +15,30 @@ class CuentasController extends Controller
         $this->middleware('auth');
     }
 
-    public function view($id){
+    public function index()
+    {
+        $mensaje = 'Hola';
+        $usuario = Auth::user();
+        return view('cuentas.index', compact('mensaje', 'usuario'));
+    }
+
+    public function create(){
+        return view('cuentas.crear');
+    }
+
+    public function store(Request $reques){
+        dd($reques);
+    }
+
+    public function show($id){
         $cuenta = Cuenta::find($id);
-        return view('cuenta', compact('cuenta'));
+        return view('cuentas.mostrar', compact('cuenta'));
     }
 
     public function newMovement($id){
         $cuenta = Cuenta::find($id);
         $categorias = Categoria::all();
-        return view('movimiento', compact('cuenta', 'categorias'));
+        return view('cuentas.movimiento', compact('cuenta', 'categorias'));
     }
 
     public function storeMovement(Request $request, $id){

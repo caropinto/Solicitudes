@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CuentasController;
 
 /*
@@ -21,7 +21,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/home/{id}', [CuentasController::class, 'view'])->name('cuenta');
-Route::get('/home/{id}/movimiento', [CuentasController::class, 'newMovement'])->name('nuevoMovimiento');
-Route::post('/home/{id}/movimiento', [CuentasController::class, 'storeMovement']);
+// Route::get('/home', [CuentasController::class, 'index'])->name('home');
+// Route::get('/home/{id}', [CuentasController::class, 'show'])->name('cuenta');
+// Route::get('/home/{id}/movimiento', [CuentasController::class, 'newMovement'])->name('nuevoMovimiento');
+// Route::post('/home/{id}/movimiento', [CuentasController::class, 'storeMovement']);
+
+Route::controller(CuentasController::class)->prefix('cuentas')->group(function () {
+    Route::get('/', 'index')->name('home');
+    Route::get('/crear', 'create')->name('crearCuenta');
+    Route::post('/crear', 'store');
+    Route::get('/{id}', 'show')->name('cuenta');
+    Route::get('/{id}/movimiento', 'newMovement')->name('nuevoMovimiento');
+    Route::post('/{id}/movimiento', 'storeMovement');
+});
