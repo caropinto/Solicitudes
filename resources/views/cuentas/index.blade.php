@@ -19,6 +19,11 @@
             </div>
         </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <a class="btn btn-primary" href="{{ route('crearCuenta') }}" role="button">Nueva Cuenta</a>
+        </div>
+    </div>
     <div class="row">
         @forelse ($usuario->cuentas as $cuenta)
             <div class="col col-sm-12 col-md-4 col-lg-3">
